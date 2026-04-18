@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="GreenColor">#FF468966</Color>
+    <Color x:Key="YellowColor">#FFFFBD59</Color>
+    <Color x:Key="RedColor">#FFD55043</Color>
+    <Color x:Key="BlueColor">#FF0097B2</Color>
+    <Color x:Key="OrangeColor">#FFFF7612</Color>
+    <Color x:Key="GrayColor">#FF737373</Color>
+    <Color x:Key="LightBgColor">#FFF4F6F8</Color>
+    <Color x:Key="BorderColor">#FFDDE3EA</Color>
+
+    <SolidColorBrush x:Key="GreenBrush" Color="{StaticResource GreenColor}"/>
+    <SolidColorBrush x:Key="YellowBrush" Color="{StaticResource YellowColor}"/>
+    <SolidColorBrush x:Key="RedBrush" Color="{StaticResource RedColor}"/>
+    <SolidColorBrush x:Key="BlueBrush" Color="{StaticResource BlueColor}"/>
+    <SolidColorBrush x:Key="OrangeBrush" Color="{StaticResource OrangeColor}"/>
+    <SolidColorBrush x:Key="GrayBrush" Color="{StaticResource GrayColor}"/>
+    <SolidColorBrush x:Key="LightBgBrush" Color="{StaticResource LightBgColor}"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+
+</ResourceDictionary>
