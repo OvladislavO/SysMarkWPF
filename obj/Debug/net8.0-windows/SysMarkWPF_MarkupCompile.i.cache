@@ -16,5 +16,5 @@ C:\Users\Inna\source\repos\SysMarkWPF\App.xaml
 212-1265878045
 MainWindow.xaml;Resources\Colors.xaml;Resources\Styles.xaml;Views\CpuMarkPage.xaml;Views\DiskMarkPage.xaml;Views\MainPage.xaml;Views\MemoryMarkPage.xaml;Views\PassMarkPage.xaml;
 
-True
+False
 

@@ -196,7 +196,7 @@ namespace SysMarkWPF.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SysMarkWPF;component/views/mainpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SysMarkWPF;V1.0.0.0;component/views/mainpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\MainPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

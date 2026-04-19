@@ -56,3 +56,4 @@ C:\Users\Inna\source\repos\SysMarkWPF\obj\Debug\net8.0-windows\Views\CpuMarkPage
 C:\Users\Inna\source\repos\SysMarkWPF\obj\Debug\net8.0-windows\Views\DiskMarkPage.baml
 C:\Users\Inna\source\repos\SysMarkWPF\obj\Debug\net8.0-windows\Views\MemoryMarkPage.baml
 C:\Users\Inna\source\repos\SysMarkWPF\obj\Debug\net8.0-windows\Views\PassMarkPage.baml
+C:\Users\Inna\source\repos\SysMarkWPF\obj\Debug\net8.0-windows\SysMarkWPF.sourcelink.json
