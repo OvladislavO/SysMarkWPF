@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 C:\Users\Inna\source\repos\SysMarkWPF\App.xaml
-8-1496663590
+9382411462
 
-11-127242625
+141326099193
 212-1265878045
-MainWindow.xaml;Resources\Colors.xaml;Resources\Styles.xaml;Views\CpuMarkPage.xaml;Views\DiskMarkPage.xaml;Views\MainPage.xaml;Views\MemoryMarkPage.xaml;Views\PassMarkPage.xaml;
+MainWindow.xaml;Resources\Colors.xaml;Resources\Styles.xaml;Views\CpuMarkPage.xaml;Views\DiskMarkPage.xaml;Views\MainPage.xaml;Views\MemoryMarkPage.xaml;Views\NetworkMarkPage.xaml;Views\PassMarkPage.xaml;
 
 False
 

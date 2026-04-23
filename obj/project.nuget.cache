@@ -34,5 +34,15 @@
     "C:\\Users\\Inna\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512",
     "C:\\Users\\Inna\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Произошла ошибка при получении данных уязвимости пакета: Не удалось загрузить индекс служб для источника https://api.nuget.org/v3/index.json.",
+      "projectPath": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\SysMarkWPF.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\SysMarkWPF.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

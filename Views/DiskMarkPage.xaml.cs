@@ -1,4 +1,5 @@
 ﻿using Hardware.Info;
+using SysMarkWPF.Models;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -122,6 +123,16 @@ namespace SysMarkWPF.Views
                     TotalScore.Text = total.ToString();
                     StatusText.Text = "Test completed!";
                 });
+
+                BenchmarkResults.DiskTotalScore = total;
+                BenchmarkResults.DiskSeqReadScore = seqReadResult.Score;
+                BenchmarkResults.DiskSeqWriteScore = seqWriteResult.Score;
+                BenchmarkResults.DiskRandScore = randResult.Score;
+                BenchmarkResults.DiskSeqReadSpeed = seqReadResult.SpeedMBps;
+                BenchmarkResults.DiskSeqWriteSpeed = seqWriteResult.SpeedMBps;
+                BenchmarkResults.DiskRandReadSpeed = randResult.ReadSpeedMBps;
+                BenchmarkResults.DiskRandWriteSpeed = randResult.WriteSpeedMBps;
+                BenchmarkResults.DiskCompleted = true;
             }
             catch (OperationCanceledException)
             {

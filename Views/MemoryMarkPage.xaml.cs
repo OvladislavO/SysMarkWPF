@@ -1,4 +1,5 @@
 ﻿using Hardware.Info;
+using SysMarkWPF.Models;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -99,6 +100,16 @@ namespace SysMarkWPF.Views
                     TotalScore.Text = total.ToString();
                     StatusText.Text = "Test completed!";
                 });
+
+                BenchmarkResults.MemoryTotalScore = total;
+                BenchmarkResults.MemoryReadScore = readResult.Score;
+                BenchmarkResults.MemoryWriteScore = writeResult.Score;
+                BenchmarkResults.MemoryLatencyScore = latencyResult.Score;
+                BenchmarkResults.MemoryReadSpeed = readResult.SpeedMBps;
+                BenchmarkResults.MemoryWriteSpeed = writeResult.SpeedMBps;
+                BenchmarkResults.MemoryLatencyNs = latencyResult.LatencyNs;
+                BenchmarkResults.MemoryCompleted = true;
+
             }
             catch (OperationCanceledException)
             {

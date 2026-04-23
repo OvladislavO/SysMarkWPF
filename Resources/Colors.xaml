@@ -9,6 +9,8 @@
     <Color x:Key="GrayColor">#FF737373</Color>
     <Color x:Key="LightBgColor">#FFF4F6F8</Color>
     <Color x:Key="BorderColor">#FFDDE3EA</Color>
+    <Color x:Key="PurpleColor">#FF7B35C4</Color>
+
 
     <SolidColorBrush x:Key="GreenBrush" Color="{StaticResource GreenColor}"/>
     <SolidColorBrush x:Key="YellowBrush" Color="{StaticResource YellowColor}"/>
@@ -18,5 +20,7 @@
     <SolidColorBrush x:Key="GrayBrush" Color="{StaticResource GrayColor}"/>
     <SolidColorBrush x:Key="LightBgBrush" Color="{StaticResource LightBgColor}"/>
     <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+    <SolidColorBrush x:Key="PurpleBrush" Color="{StaticResource PurpleColor}"/>
+
 
 </ResourceDictionary>

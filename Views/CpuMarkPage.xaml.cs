@@ -1,4 +1,5 @@
 ﻿using Hardware.Info;
+using SysMarkWPF.Models;
 using System.Security.Cryptography;
 using System.Windows;
 using System.Windows.Controls;
@@ -104,6 +105,16 @@ namespace SysMarkWPF.Views
                     TotalScore.Text = total.ToString();
                     StatusText.Text = "Test completed!";
                 });
+
+                BenchmarkResults.CpuTotalScore = total;
+                BenchmarkResults.CpuMathScore = mathResult.Score;
+                BenchmarkResults.CpuSortScore = sortResult.Score;
+                BenchmarkResults.CpuAesScore = aesResult.Score;
+                BenchmarkResults.CpuMathSpeed = mathResult.SpeedMops;
+                BenchmarkResults.CpuSortTime = sortResult.TimeMs;
+                BenchmarkResults.CpuAesSpeed = aesResult.SpeedMBps;
+                BenchmarkResults.CpuCompleted = true;
+
             }
             catch (OperationCanceledException)
             {

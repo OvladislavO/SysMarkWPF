@@ -1,40 +1,170 @@
 ﻿<Page x:Class="SysMarkWPF.Views.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Background="#F5F5F5">
+      Background="#F5F5F5"
+      SizeChanged="Page_SizeChanged">
 
-    <Grid Margin="16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="70"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid x:Name="MainGrid" Margin="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <!-- Шапка -->
-        <Border Grid.Row="0" Background="White" CornerRadius="10"
-                BorderBrush="{StaticResource BorderBrush}"
-                BorderThickness="0.5" Padding="16,12" Margin="0,0,0,12">
-            <StackPanel HorizontalAlignment="Center">
-                <TextBlock Text="SysMarkWPF" FontSize="20" FontWeight="Medium"
-                           Foreground="#222222" HorizontalAlignment="Center"/>
-                <TextBlock Text="Performance Benchmark" FontSize="12"
-                           Foreground="#888888" HorizontalAlignment="Center"
-                           Margin="0,2,0,0"/>
-            </StackPanel>
-        </Border>
+                <!-- Шапка -->
+                <Border x:Name="HeaderBorder" Grid.Row="0" Background="White"
+                        CornerRadius="10" BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="0.5" Padding="16,12" Margin="0,0,0,12">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="SysMarkWPF" FontSize="20" FontWeight="Medium"
+                                   Foreground="#222222" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Performance Benchmark" FontSize="12"
+                                   Foreground="#888888" HorizontalAlignment="Center"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
+                </Border>
 
-        <!-- System Information -->
-        <Border Grid.Row="1" Background="#F4F6F8" CornerRadius="10"
-                BorderBrush="{StaticResource BorderBrush}"
-                BorderThickness="0.5" Padding="16" Margin="0,0,0,12">
-            <StackPanel>
-                <TextBlock Text="SYSTEM INFORMATION" FontSize="11"
-                           FontWeight="Medium" Foreground="#555555"
-                           HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                <!-- System Information -->
+                <Border x:Name="SysInfoBorder" Grid.Row="1" Background="#F4F6F8"
+                        CornerRadius="10" BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="0.5" Padding="14" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="SYSTEM INFORMATION" FontSize="11"
+                                   FontWeight="Medium" Foreground="#555555"
+                                   HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
-                <!-- Верхний ряд карточек -->
-                <Grid Margin="0,0,0,10">
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Style="{StaticResource InfoCardStyle}"
+                                    Margin="0,0,5,0" MinHeight="80">
+                                <StackPanel>
+                                    <TextBlock Text="CPU" Style="{StaticResource CardLabelStyle}"/>
+                                    <TextBlock x:Name="CpuName" Text="—"
+                                               Style="{StaticResource CardValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="CpuCores" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="CpuSpeed" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="1" Style="{StaticResource InfoCardStyle}"
+                                    Margin="5,0,5,0" MinHeight="80">
+                                <StackPanel>
+                                    <TextBlock Text="RAM" Style="{StaticResource CardLabelStyle}"/>
+                                    <TextBlock x:Name="RamTotal" Text="—"
+                                               Style="{StaticResource CardValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="RamSpeed" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="RamAvailable" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="2" Style="{StaticResource InfoCardStyle}"
+                                    Margin="5,0,5,0" MinHeight="80">
+                                <StackPanel>
+                                    <TextBlock Text="GPU" Style="{StaticResource CardLabelStyle}"/>
+                                    <TextBlock x:Name="GpuName" Text="—"
+                                               Style="{StaticResource CardValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="GpuVram" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="GpuDriver" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="3" Style="{StaticResource InfoCardStyle}"
+                                    Margin="5,0,0,0" MinHeight="80">
+                                <StackPanel>
+                                    <TextBlock Text="Disk" Style="{StaticResource CardLabelStyle}"/>
+                                    <TextBlock x:Name="DiskName" Text="—"
+                                               Style="{StaticResource CardValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="DiskType" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="DiskFree" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Style="{StaticResource InfoCardStyle}"
+                                    Margin="0,0,5,0" MinHeight="60">
+                                <StackPanel>
+                                    <TextBlock Text="Operating system"
+                                               Style="{StaticResource CardLabelStyle}"/>
+                                    <TextBlock x:Name="OsName" Text="—"
+                                               Style="{StaticResource CardValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="OsBuild" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="1" Style="{StaticResource InfoCardStyle}"
+                                    Margin="5,0,5,0" MinHeight="60">
+                                <StackPanel>
+                                    <TextBlock Text="Computer name"
+                                               Style="{StaticResource CardLabelStyle}"/>
+                                    <TextBlock x:Name="ComputerName" Text="—"
+                                               Style="{StaticResource CardValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="UserName" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="2" Style="{StaticResource InfoCardStyle}"
+                                    Margin="5,0,0,0" MinHeight="60">
+                                <StackPanel>
+                                    <TextBlock Text="Network"
+                                               Style="{StaticResource CardLabelStyle}"/>
+                                    <TextBlock x:Name="NetworkAdapter" Text="—"
+                                               Style="{StaticResource CardValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                    <TextBlock x:Name="NetworkIp" Text="—"
+                                               Style="{StaticResource CardSubValueStyle}"
+                                               TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Последние результаты — растягиваются -->
+                <Grid x:Name="LastResultsGrid" Grid.Row="2" Margin="0,0,0,12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -42,159 +172,142 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- CPU -->
-                    <Border Grid.Column="0" Style="{StaticResource InfoCardStyle}"
-                            Margin="0,0,5,0" MinHeight="90">
-                        <StackPanel>
-                            <TextBlock Text="CPU" Style="{StaticResource CardLabelStyle}"/>
-                            <TextBlock x:Name="CpuName" Text="—"
-                                       Style="{StaticResource CardValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="CpuCores" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="CpuSpeed" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
+                    <Border Grid.Column="0" Background="White" CornerRadius="10"
+            BorderBrush="{StaticResource BorderBrush}"
+            BorderThickness="0.5" Padding="10" Margin="0,0,5,0">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Last CPU Mark" FontSize="10"
+                       Foreground="#888888" HorizontalAlignment="Center"
+                       Margin="0,0,0,4"/>
+                            <TextBlock x:Name="LastCpuScore" Text="—" FontSize="20"
+                       FontWeight="Medium" Foreground="#468966"
+                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="pts" FontSize="10" Foreground="#888888"
+                       HorizontalAlignment="Center" Margin="0,3,0,0"/>
                         </StackPanel>
                     </Border>
 
-                    <!-- RAM -->
-                    <Border Grid.Column="1" Style="{StaticResource InfoCardStyle}"
-                            Margin="5,0,5,0" MinHeight="90">
-                        <StackPanel>
-                            <TextBlock Text="RAM" Style="{StaticResource CardLabelStyle}"/>
-                            <TextBlock x:Name="RamTotal" Text="—"
-                                       Style="{StaticResource CardValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="RamSpeed" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="RamAvailable" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
+                    <Border Grid.Column="1" Background="White" CornerRadius="10"
+            BorderBrush="{StaticResource BorderBrush}"
+            BorderThickness="0.5" Padding="10" Margin="5,0,5,0">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Last Memory Mark" FontSize="10"
+                       Foreground="#888888" HorizontalAlignment="Center"
+                       Margin="0,0,0,4"/>
+                            <TextBlock x:Name="LastMemoryScore" Text="—" FontSize="20"
+                       FontWeight="Medium" Foreground="#FFBD59"
+                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="pts" FontSize="10" Foreground="#888888"
+                       HorizontalAlignment="Center" Margin="0,3,0,0"/>
                         </StackPanel>
                     </Border>
 
-                    <!-- GPU -->
-                    <Border Grid.Column="2" Style="{StaticResource InfoCardStyle}"
-                            Margin="5,0,5,0" MinHeight="90">
-                        <StackPanel>
-                            <TextBlock Text="GPU" Style="{StaticResource CardLabelStyle}"/>
-                            <TextBlock x:Name="GpuName" Text="—"
-                                       Style="{StaticResource CardValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="GpuVram" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="GpuDriver" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
+                    <Border Grid.Column="2" Background="White" CornerRadius="10"
+            BorderBrush="{StaticResource BorderBrush}"
+            BorderThickness="0.5" Padding="10" Margin="5,0,5,0">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Last Disk Mark" FontSize="10"
+                       Foreground="#888888" HorizontalAlignment="Center"
+                       Margin="0,0,0,4"/>
+                            <TextBlock x:Name="LastDiskScore" Text="—" FontSize="20"
+                       FontWeight="Medium" Foreground="#D55043"
+                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="pts" FontSize="10" Foreground="#888888"
+                       HorizontalAlignment="Center" Margin="0,3,0,0"/>
                         </StackPanel>
                     </Border>
 
-                    <!-- Disk -->
-                    <Border Grid.Column="3" Style="{StaticResource InfoCardStyle}"
-                            Margin="5,0,0,0" MinHeight="90">
-                        <StackPanel>
-                            <TextBlock Text="Disk" Style="{StaticResource CardLabelStyle}"/>
-                            <TextBlock x:Name="DiskName" Text="—"
-                                       Style="{StaticResource CardValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="DiskType" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="DiskFree" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
+                    <Border Grid.Column="3" Background="White" CornerRadius="10"
+            BorderBrush="{StaticResource BorderBrush}"
+            BorderThickness="0.5" Padding="10" Margin="5,0,0,0">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Last Network Mark" FontSize="10"
+                       Foreground="#888888" HorizontalAlignment="Center"
+                       Margin="0,0,0,4"/>
+                            <TextBlock x:Name="LastNetworkScore" Text="—" FontSize="20"
+                       FontWeight="Medium" Foreground="#7B35C4"
+                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="pts" FontSize="10" Foreground="#888888"
+                       HorizontalAlignment="Center" Margin="0,3,0,0"/>
                         </StackPanel>
                     </Border>
                 </Grid>
+                <!-- Run All Tests -->
+                <Button x:Name="RunAllButton" Grid.Row="3" Content="Run All Tests"
+                        Style="{StaticResource NavButtonStyle}"
+                        Background="{StaticResource BlueBrush}"
+                        FontSize="15" Margin="0,0,0,10"
+                        Click="RunAllTests_Click"/>
 
-                <!-- Нижний ряд карточек -->
-                <Grid>
+                <!-- 4 кнопки навигации -->
+                <Grid x:Name="NavButtonsGrid" Grid.Row="4" Margin="0,0,0,10">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- OS -->
-                    <Border Grid.Column="0" Style="{StaticResource InfoCardStyle}"
-                            Margin="0,0,5,0" MinHeight="70">
-                        <StackPanel>
-                            <TextBlock Text="Operating system"
-                                       Style="{StaticResource CardLabelStyle}"/>
-                            <TextBlock x:Name="OsName" Text="—"
-                                       Style="{StaticResource CardValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="OsBuild" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Computer -->
-                    <Border Grid.Column="1" Style="{StaticResource InfoCardStyle}"
-                            Margin="5,0,5,0" MinHeight="70">
-                        <StackPanel>
-                            <TextBlock Text="Computer name"
-                                       Style="{StaticResource CardLabelStyle}"/>
-                            <TextBlock x:Name="ComputerName" Text="—"
-                                       Style="{StaticResource CardValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="UserName" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </Border>
-
-                    <!-- Network -->
-                    <Border Grid.Column="2" Style="{StaticResource InfoCardStyle}"
-                            Margin="5,0,0,0" MinHeight="70">
-                        <StackPanel>
-                            <TextBlock Text="Network"
-                                       Style="{StaticResource CardLabelStyle}"/>
-                            <TextBlock x:Name="NetworkAdapter" Text="—"
-                                       Style="{StaticResource CardValueStyle}"
-                                       TextWrapping="Wrap"/>
-                            <TextBlock x:Name="NetworkIp" Text="—"
-                                       Style="{StaticResource CardSubValueStyle}"
-                                       TextWrapping="Wrap"/>
-                        </StackPanel>
-                    </Border>
+                    <Button Grid.Column="0" Content="CPU Mark"
+                            Style="{StaticResource NavButtonStyle}"
+                            Background="{StaticResource GreenBrush}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="0,0,5,0" Click="CpuMark_Click"/>
+                    <Button Grid.Column="1" Content="Memory Mark"
+                            Style="{StaticResource NavButtonStyle}"
+                            Background="{StaticResource YellowBrush}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="5,0,5,0" Click="MemoryMark_Click"/>
+                    <Button Grid.Column="2" Content="Disk Mark"
+                            Style="{StaticResource NavButtonStyle}"
+                            Background="{StaticResource RedBrush}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="5,0,5,0" Click="DiskMark_Click"/>
+                    <Button Grid.Column="3" Content="Network Mark"
+                            Style="{StaticResource NavButtonStyle}"
+                            Background="{StaticResource PurpleBrush}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="5,0,0,0" Click="NetworkMark_Click"/>
                 </Grid>
-            </StackPanel>
-        </Border>
 
-        <!-- Пустое пространство -->
-        <Grid Grid.Row="2"/>
+                <!-- Кнопки сохранения -->
+                <Border x:Name="SaveBorder" Grid.Row="5" Background="#F4F6F8"
+                        CornerRadius="10" BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="0.5" Padding="10">
+                    <StackPanel>
+                        <TextBlock Text="Save results" FontSize="10"
+                                   Foreground="#888888" HorizontalAlignment="Center"
+                                   Margin="0,0,0,8"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-        <!-- Кнопки навигации -->
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="0" Content="CPU Mark"
-                    Style="{StaticResource NavButtonStyle}"
-                    Background="{StaticResource GreenBrush}"
-                    Margin="0,0,5,0" Click="CpuMark_Click"/>
-            <Button Grid.Column="1" Content="Memory Mark"
-                    Style="{StaticResource NavButtonStyle}"
-                    Background="{StaticResource YellowBrush}"
-                    Margin="5,0,5,0" Click="MemoryMark_Click"/>
-            <Button Grid.Column="2" Content="Disk Mark"
-                    Style="{StaticResource NavButtonStyle}"
-                    Background="{StaticResource RedBrush}"
-                    Margin="5,0,5,0" Click="DiskMark_Click"/>
-            <Button Grid.Column="3" Content="PassMark"
-                    Style="{StaticResource NavButtonStyle}"
-                    Background="{StaticResource BlueBrush}"
-                    Margin="5,0,0,0" Click="PassMark_Click"/>
-        </Grid>
+                            <Button Grid.Column="0" Content="Save TXT"
+                                    Style="{StaticResource NavButtonStyle}"
+                                    Background="{StaticResource GrayBrush}"
+                                    Height="40" FontSize="12"
+                                    Margin="0,0,5,0" Click="SaveTxt_Click"/>
+                            <Button Grid.Column="1" Content="Save PNG"
+                                    Style="{StaticResource NavButtonStyle}"
+                                    Background="{StaticResource GrayBrush}"
+                                    Height="40" FontSize="12"
+                                    Margin="5,0,5,0" Click="SavePng_Click"/>
+                            <Button Grid.Column="2" Content="Save DOCX"
+                                    Style="{StaticResource NavButtonStyle}"
+                                    Background="{StaticResource GrayBrush}"
+                                    Height="40" FontSize="12"
+                                    Margin="5,0,0,0" Click="SaveDocx_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Page>

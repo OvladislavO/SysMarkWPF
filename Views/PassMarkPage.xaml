@@ -1,14 +1,503 @@
 ﻿<Page x:Class="SysMarkWPF.Views.PassMarkPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:SysMarkWPF.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="PassMarkPage">
+      Background="#F5F5F5">
 
-    <Grid>
-        
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <!-- Шапка -->
+        <Border Grid.Row="0" Background="White" CornerRadius="10"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="0.5" Padding="12,8" Margin="0,0,0,8">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="PassMark" FontSize="18" FontWeight="Medium"
+                           Foreground="#222222" HorizontalAlignment="Center"/>
+                <TextBlock Text="Overall Performance Score" FontSize="11"
+                           Foreground="#888888" HorizontalAlignment="Center"
+                           Margin="0,2,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Прогресс -->
+        <Border Grid.Row="1" Background="#F4F6F8" CornerRadius="10"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="0.5" Padding="12,10" Margin="0,0,0,8">
+            <StackPanel>
+                <Grid Margin="0,0,0,6">
+                    <TextBlock Text="Overall Progress" FontSize="11" Foreground="#555555"/>
+                    <TextBlock x:Name="OverallProgressText" Text="0%" FontSize="11"
+                               Foreground="#555555" HorizontalAlignment="Right"/>
+                </Grid>
+                <ProgressBar x:Name="OverallProgressBar" Height="8"
+                             Minimum="0" Maximum="100" Value="0"
+                             Foreground="{StaticResource BlueBrush}"
+                             Background="#DDE3EA">
+                    <ProgressBar.Template>
+                        <ControlTemplate TargetType="ProgressBar">
+                            <Border Background="{TemplateBinding Background}"
+                                    CornerRadius="4" Height="8">
+                                <Border x:Name="PART_Track">
+                                    <Border x:Name="PART_Indicator"
+                                            Background="{TemplateBinding Foreground}"
+                                            CornerRadius="4"
+                                            HorizontalAlignment="Left"/>
+                                </Border>
+                            </Border>
+                        </ControlTemplate>
+                    </ProgressBar.Template>
+                </ProgressBar>
+
+                <!-- 4 мини бара -->
+                <Grid Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- CPU -->
+                    <StackPanel Grid.Column="0" Margin="0,0,6,0">
+                        <Grid Margin="0,0,0,2">
+                            <TextBlock Text="CPU Mark" FontSize="10"
+                                       Foreground="{StaticResource GreenBrush}"/>
+                            <TextBlock x:Name="CpuMiniStatus" Text="0%"
+                                       FontSize="10" Foreground="#888888"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+                        <ProgressBar x:Name="CpuMiniBar" Height="4"
+                                     Minimum="0" Maximum="100" Value="0"
+                                     Foreground="{StaticResource GreenBrush}"
+                                     Background="#DDE3EA">
+                            <ProgressBar.Template>
+                                <ControlTemplate TargetType="ProgressBar">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="2" Height="4">
+                                        <Border x:Name="PART_Track">
+                                            <Border x:Name="PART_Indicator"
+                                                    Background="{TemplateBinding Foreground}"
+                                                    CornerRadius="2"
+                                                    HorizontalAlignment="Left"/>
+                                        </Border>
+                                    </Border>
+                                </ControlTemplate>
+                            </ProgressBar.Template>
+                        </ProgressBar>
+                    </StackPanel>
+
+                    <!-- Memory -->
+                    <StackPanel Grid.Column="1" Margin="3,0,3,0">
+                        <Grid Margin="0,0,0,2">
+                            <TextBlock Text="Memory Mark" FontSize="10"
+                                       Foreground="{StaticResource YellowBrush}"/>
+                            <TextBlock x:Name="MemMiniStatus" Text="0%"
+                                       FontSize="10" Foreground="#888888"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+                        <ProgressBar x:Name="MemMiniBar" Height="4"
+                                     Minimum="0" Maximum="100" Value="0"
+                                     Foreground="{StaticResource YellowBrush}"
+                                     Background="#DDE3EA">
+                            <ProgressBar.Template>
+                                <ControlTemplate TargetType="ProgressBar">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="2" Height="4">
+                                        <Border x:Name="PART_Track">
+                                            <Border x:Name="PART_Indicator"
+                                                    Background="{TemplateBinding Foreground}"
+                                                    CornerRadius="2"
+                                                    HorizontalAlignment="Left"/>
+                                        </Border>
+                                    </Border>
+                                </ControlTemplate>
+                            </ProgressBar.Template>
+                        </ProgressBar>
+                    </StackPanel>
+
+                    <!-- Disk -->
+                    <StackPanel Grid.Column="2" Margin="3,0,3,0">
+                        <Grid Margin="0,0,0,2">
+                            <TextBlock Text="Disk Mark" FontSize="10"
+                                       Foreground="{StaticResource RedBrush}"/>
+                            <TextBlock x:Name="DiskMiniStatus" Text="0%"
+                                       FontSize="10" Foreground="#888888"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+                        <ProgressBar x:Name="DiskMiniBar" Height="4"
+                                     Minimum="0" Maximum="100" Value="0"
+                                     Foreground="{StaticResource RedBrush}"
+                                     Background="#DDE3EA">
+                            <ProgressBar.Template>
+                                <ControlTemplate TargetType="ProgressBar">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="2" Height="4">
+                                        <Border x:Name="PART_Track">
+                                            <Border x:Name="PART_Indicator"
+                                                    Background="{TemplateBinding Foreground}"
+                                                    CornerRadius="2"
+                                                    HorizontalAlignment="Left"/>
+                                        </Border>
+                                    </Border>
+                                </ControlTemplate>
+                            </ProgressBar.Template>
+                        </ProgressBar>
+                    </StackPanel>
+
+                    <!-- Network -->
+                    <StackPanel Grid.Column="3" Margin="6,0,0,0">
+                        <Grid Margin="0,0,0,2">
+                            <TextBlock Text="Network Mark" FontSize="10"
+                                       Foreground="{StaticResource PurpleBrush}"/>
+                            <TextBlock x:Name="NetMiniStatus" Text="0%"
+                                       FontSize="10" Foreground="#888888"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+                        <ProgressBar x:Name="NetMiniBar" Height="4"
+                                     Minimum="0" Maximum="100" Value="0"
+                                     Foreground="{StaticResource PurpleBrush}"
+                                     Background="#DDE3EA">
+                            <ProgressBar.Template>
+                                <ControlTemplate TargetType="ProgressBar">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="2" Height="4">
+                                        <Border x:Name="PART_Track">
+                                            <Border x:Name="PART_Indicator"
+                                                    Background="{TemplateBinding Foreground}"
+                                                    CornerRadius="2"
+                                                    HorizontalAlignment="Left"/>
+                                        </Border>
+                                    </Border>
+                                </ControlTemplate>
+                            </ProgressBar.Template>
+                        </ProgressBar>
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock x:Name="StatusText" Text="Press Run All to begin"
+                           FontSize="10" Foreground="#888888"
+                           HorizontalAlignment="Center" Margin="0,6,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Итоговый балл -->
+        <Border Grid.Row="2" Background="{StaticResource BlueBrush}"
+                CornerRadius="10" Padding="10" Margin="0,0,0,8">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock Text="Total PassMark Score" FontSize="11"
+                           Foreground="White" HorizontalAlignment="Center"
+                           Margin="0,0,0,2"/>
+                <TextBlock x:Name="TotalScore" Text="—" FontSize="36"
+                           FontWeight="Medium" Foreground="White"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Карточки результатов со ScrollViewer -->
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto"
+                      Margin="0,0,0,8">
+            <StackPanel>
+
+                <!-- CPU Mark -->
+                <Border Background="White" CornerRadius="10"
+                        BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="0.5" Padding="10" Margin="0,0,0,6">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,6">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="8" Height="8"
+                                         Fill="{StaticResource GreenBrush}"
+                                         VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <TextBlock Text="CPU Mark" FontSize="12"
+                                           FontWeight="Medium" Foreground="#333333"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock x:Name="CpuTotalText" Text="— pts"
+                                       FontSize="16" FontWeight="Medium"
+                                       Foreground="{StaticResource GreenBrush}"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="0,0,4,0">
+                                <StackPanel>
+                                    <TextBlock Text="Math operations" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="CpuMathScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="CpuMathSpeedText" Text="— Mop/s"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="4,0,4,0">
+                                <StackPanel>
+                                    <TextBlock Text="Sorting" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="CpuSortScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="CpuSortTimeText" Text="— ms"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="4,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Encryption (AES)" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="CpuAesScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="CpuAesSpeedText" Text="— MB/s"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Memory Mark -->
+                <Border Background="White" CornerRadius="10"
+                        BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="0.5" Padding="10" Margin="0,0,0,6">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,6">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="8" Height="8"
+                                         Fill="{StaticResource YellowBrush}"
+                                         VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <TextBlock Text="Memory Mark" FontSize="12"
+                                           FontWeight="Medium" Foreground="#333333"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock x:Name="MemTotalText" Text="— pts"
+                                       FontSize="16" FontWeight="Medium"
+                                       Foreground="{StaticResource YellowBrush}"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="0,0,4,0">
+                                <StackPanel>
+                                    <TextBlock Text="Sequential Read" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="MemReadScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="MemReadSpeedText" Text="— MB/s"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="4,0,4,0">
+                                <StackPanel>
+                                    <TextBlock Text="Sequential Write" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="MemWriteScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="MemWriteSpeedText" Text="— MB/s"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="4,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Latency" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="MemLatencyScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="MemLatencyNsText" Text="— ns"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Disk Mark -->
+                <Border Background="White" CornerRadius="10"
+                        BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="0.5" Padding="10" Margin="0,0,0,6">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,6">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="8" Height="8"
+                                         Fill="{StaticResource RedBrush}"
+                                         VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <TextBlock Text="Disk Mark" FontSize="12"
+                                           FontWeight="Medium" Foreground="#333333"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock x:Name="DiskTotalText" Text="— pts"
+                                       FontSize="16" FontWeight="Medium"
+                                       Foreground="{StaticResource RedBrush}"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="0,0,4,0">
+                                <StackPanel>
+                                    <TextBlock Text="Sequential Read" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="DiskSeqReadScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="DiskSeqReadSpeedText" Text="— MB/s"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="4,0,4,0">
+                                <StackPanel>
+                                    <TextBlock Text="Sequential Write" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="DiskSeqWriteScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="DiskSeqWriteSpeedText" Text="— MB/s"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="4,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Random R/W" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="DiskRandScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="DiskRandSpeedText" Text="— MB/s"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Network Mark -->
+                <Border Background="White" CornerRadius="10"
+                        BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="0.5" Padding="10" Margin="0,0,0,0">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,6">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="8" Height="8"
+                                         Fill="{StaticResource PurpleBrush}"
+                                         VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                <TextBlock Text="Network Mark" FontSize="12"
+                                           FontWeight="Medium" Foreground="#333333"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <TextBlock x:Name="NetTotalText" Text="— pts"
+                                       FontSize="16" FontWeight="Medium"
+                                       Foreground="{StaticResource PurpleBrush}"
+                                       HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="0,0,4,0">
+                                <StackPanel>
+                                    <TextBlock Text="Ping" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="NetPingScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="NetPingAvgText" Text="— ms"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="1" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="4,0,4,0">
+                                <StackPanel>
+                                    <TextBlock Text="DNS Speed" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="NetDnsScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="NetDnsAvgText" Text="— ms"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="2" Background="#F4F6F8"
+                                    CornerRadius="8" Padding="8,6" Margin="4,0,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="Adapter" FontSize="10"
+                                               Foreground="#888888" Margin="0,0,0,2"/>
+                                    <TextBlock x:Name="NetAdapterScoreText" Text="— pts"
+                                               FontSize="11" FontWeight="Medium"
+                                               Foreground="#333333"/>
+                                    <TextBlock x:Name="NetAdapterSpeedText" Text="— Mbps"
+                                               FontSize="10" Foreground="#888888"
+                                               Margin="0,1,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Кнопки -->
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="← Home"
+                    Style="{StaticResource NavButtonStyle}"
+                    Background="{StaticResource GreenBrush}"
+                    Margin="0,0,5,0" Click="Home_Click"/>
+            <Button Grid.Column="1" x:Name="PauseButton" Content="Pause"
+                    Style="{StaticResource NavButtonStyle}"
+                    Background="{StaticResource YellowBrush}"
+                    Margin="5,0,5,0" Click="Pause_Click"/>
+            <Button Grid.Column="2" Content="Run All"
+                    Style="{StaticResource NavButtonStyle}"
+                    Background="{StaticResource RedBrush}"
+                    Margin="5,0,0,0" Click="RunAll_Click"/>
+        </Grid>
     </Grid>
 </Page>
