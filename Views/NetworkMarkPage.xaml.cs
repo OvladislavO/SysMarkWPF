@@ -22,6 +22,30 @@ namespace SysMarkWPF.Views
         private void NetworkMarkPage_Loaded(object sender, RoutedEventArgs e)
         {
             LoadAdapterInfo();
+            LoadPreviousResults();
+        }
+
+        private void LoadPreviousResults()
+        {
+            if (!BenchmarkResults.NetworkCompleted) return;
+            PingScore.Text = BenchmarkResults.NetworkPingScore.ToString();
+            PingAvg.Text = $"{BenchmarkResults.NetworkAvgPing:F1} ms";
+            PingMin.Text = "— ms";
+            PingMax.Text = "— ms";
+            PingLoss.Text = "— %";
+            DnsScore.Text = BenchmarkResults.NetworkDnsScore.ToString();
+            DnsAvg.Text = $"{BenchmarkResults.NetworkAvgDns:F1} ms";
+            DnsGoogle.Text = "— ms";
+            DnsCloudflare.Text = "— ms";
+            DnsQueries.Text = "20";
+            AdapterScore.Text = BenchmarkResults.NetworkAdapterScore.ToString();
+            AdapterSpeed.Text = $"{BenchmarkResults.NetworkLinkSpeed} Mbps";
+            AdapterType.Text = "—";
+            AdapterIp.Text = "—";
+            AdapterMac.Text = "—";
+            TotalScore.Text = BenchmarkResults.NetworkTotalScore.ToString();
+            UpdateProgress(100);
+            StatusText.Text = "Last test results loaded.";
         }
 
         private void LoadAdapterInfo()

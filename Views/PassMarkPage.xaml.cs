@@ -1,6 +1,10 @@
 ﻿using SysMarkWPF.Models;
 using System.IO;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Hardware.Info;
@@ -29,12 +33,10 @@ namespace SysMarkWPF.Views
 
         private void LoadExistingResults()
         {
-            if (BenchmarkResults.CpuCompleted)
-                UpdateCpuUI();
-            if (BenchmarkResults.MemoryCompleted)
-                UpdateMemoryUI();
-            if (BenchmarkResults.DiskCompleted)
-                UpdateDiskUI();
+            if (BenchmarkResults.CpuCompleted) UpdateCpuUI();
+            if (BenchmarkResults.MemoryCompleted) UpdateMemoryUI();
+            if (BenchmarkResults.DiskCompleted) UpdateDiskUI();
+            if (BenchmarkResults.NetworkCompleted) UpdateNetworkUI();
             UpdateTotalScore();
             UpdateOverallProgress(0, "Press Run All to begin");
         }
@@ -50,16 +52,16 @@ namespace SysMarkWPF.Views
 
             try
             {
-                // ── CPU Mark ──────────────────────────────── 0-33%
                 await RunCpuTests();
                 if (_cts.Token.IsCancellationRequested) return;
 
-                // ── Memory Mark ───────────────────────────── 33-66%
                 await RunMemoryTests();
                 if (_cts.Token.IsCancellationRequested) return;
 
-                // ── Disk Mark ─────────────────────────────── 66-100%
                 await RunDiskTests();
+                if (_cts.Token.IsCancellationRequested) return;
+
+                await RunNetworkTests();
                 if (_cts.Token.IsCancellationRequested) return;
 
                 UpdateTotalScore();
@@ -75,9 +77,53 @@ namespace SysMarkWPF.Views
                 _isPaused = false;
                 PauseButton.Content = "Pause";
                 CleanupTestFile();
+
+                UpdatePartialScore();
             }
         }
 
+        private void UpdatePartialScore()
+        {
+            int completedCount = 0;
+            double total = 0;
+
+            if (BenchmarkResults.CpuCompleted)
+            {
+                total += BenchmarkResults.CpuTotalScore * 0.35;
+                completedCount++;
+            }
+            if (BenchmarkResults.MemoryCompleted)
+            {
+                total += BenchmarkResults.MemoryTotalScore * 0.25;
+                completedCount++;
+            }
+            if (BenchmarkResults.DiskCompleted)
+            {
+                total += BenchmarkResults.DiskTotalScore * 0.25;
+                completedCount++;
+            }
+            if (BenchmarkResults.NetworkCompleted)
+            {
+                total += BenchmarkResults.NetworkTotalScore * 0.15;
+                completedCount++;
+            }
+
+            if (completedCount == 0) return;
+
+            double totalWeight = 0;
+            if (BenchmarkResults.CpuCompleted) totalWeight += 0.35;
+            if (BenchmarkResults.MemoryCompleted) totalWeight += 0.25;
+            if (BenchmarkResults.DiskCompleted) totalWeight += 0.25;
+            if (BenchmarkResults.NetworkCompleted) totalWeight += 0.15;
+
+            int score = (int)(total / totalWeight);
+            Dispatcher.Invoke(() =>
+            {
+                TotalScore.Text = completedCount == 4
+                    ? score.ToString()
+                    : $"{score} *"; 
+            });
+        }
         private void Pause_Click(object sender, RoutedEventArgs e)
         {
             switch (_isPaused)
@@ -104,7 +150,7 @@ namespace SysMarkWPF.Views
             MainWindow.Instance?.NavigateTo(new MainPage());
         }
 
-        // ── Вспомогательные методы UI ──────────────────────────────
+        // ── UI helpers ─────────────────────────────────────────────
 
         private void UpdateStatus(string text) =>
             Dispatcher.Invoke(() => StatusText.Text = text);
@@ -137,6 +183,10 @@ namespace SysMarkWPF.Views
                         DiskMiniBar.Value = value;
                         DiskMiniStatus.Text = value == 100 ? "✓" : label;
                         break;
+                    case "net":
+                        NetMiniBar.Value = value;
+                        NetMiniStatus.Text = value == 100 ? "✓" : label;
+                        break;
                 }
             });
         }
@@ -146,21 +196,31 @@ namespace SysMarkWPF.Views
             Dispatcher.Invoke(() =>
             {
                 TotalScore.Text = "—";
+
                 CpuTotalText.Text = "— pts";
                 CpuMathScoreText.Text = "— pts"; CpuMathSpeedText.Text = "— Mop/s";
                 CpuSortScoreText.Text = "— pts"; CpuSortTimeText.Text = "— ms";
                 CpuAesScoreText.Text = "— pts"; CpuAesSpeedText.Text = "— MB/s";
+
                 MemTotalText.Text = "— pts";
                 MemReadScoreText.Text = "— pts"; MemReadSpeedText.Text = "— MB/s";
                 MemWriteScoreText.Text = "— pts"; MemWriteSpeedText.Text = "— MB/s";
                 MemLatencyScoreText.Text = "— pts"; MemLatencyNsText.Text = "— ns";
+
                 DiskTotalText.Text = "— pts";
                 DiskSeqReadScoreText.Text = "— pts"; DiskSeqReadSpeedText.Text = "— MB/s";
                 DiskSeqWriteScoreText.Text = "— pts"; DiskSeqWriteSpeedText.Text = "— MB/s";
                 DiskRandScoreText.Text = "— pts"; DiskRandSpeedText.Text = "— MB/s";
+
+                NetTotalText.Text = "— pts";
+                NetPingScoreText.Text = "— pts"; NetPingAvgText.Text = "— ms";
+                NetDnsScoreText.Text = "— pts"; NetDnsAvgText.Text = "— ms";
+                NetAdapterScoreText.Text = "— pts"; NetAdapterSpeedText.Text = "— Mbps";
+
                 CpuMiniBar.Value = 0; CpuMiniStatus.Text = "0%";
                 MemMiniBar.Value = 0; MemMiniStatus.Text = "0%";
                 DiskMiniBar.Value = 0; DiskMiniStatus.Text = "0%";
+                NetMiniBar.Value = 0; NetMiniStatus.Text = "0%";
                 OverallProgressBar.Value = 0; OverallProgressText.Text = "0%";
             });
         }
@@ -208,15 +268,31 @@ namespace SysMarkWPF.Views
             });
         }
 
+        private void UpdateNetworkUI()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                NetTotalText.Text = $"{BenchmarkResults.NetworkTotalScore} pts";
+                NetPingScoreText.Text = $"{BenchmarkResults.NetworkPingScore} pts";
+                NetPingAvgText.Text = $"{BenchmarkResults.NetworkAvgPing:F1} ms";
+                NetDnsScoreText.Text = $"{BenchmarkResults.NetworkDnsScore} pts";
+                NetDnsAvgText.Text = $"{BenchmarkResults.NetworkAvgDns:F1} ms";
+                NetAdapterScoreText.Text = $"{BenchmarkResults.NetworkAdapterScore} pts";
+                NetAdapterSpeedText.Text = $"{BenchmarkResults.NetworkLinkSpeed} Mbps";
+            });
+        }
+
         private void UpdateTotalScore()
         {
             if (!BenchmarkResults.CpuCompleted ||
                 !BenchmarkResults.MemoryCompleted ||
-                !BenchmarkResults.DiskCompleted) return;
+                !BenchmarkResults.DiskCompleted ||
+                !BenchmarkResults.NetworkCompleted) return;
 
-            int total = (int)(BenchmarkResults.CpuTotalScore * 0.4 +
-                              BenchmarkResults.MemoryTotalScore * 0.3 +
-                              BenchmarkResults.DiskTotalScore * 0.3);
+            int total = (int)(BenchmarkResults.CpuTotalScore * 0.35 +
+                              BenchmarkResults.MemoryTotalScore * 0.25 +
+                              BenchmarkResults.DiskTotalScore * 0.25 +
+                              BenchmarkResults.NetworkTotalScore * 0.15);
             Dispatcher.Invoke(() => TotalScore.Text = total.ToString());
         }
 
@@ -253,7 +329,7 @@ namespace SysMarkWPF.Views
             BenchmarkResults.CpuMathScore = mathResult.Score;
             BenchmarkResults.CpuMathSpeed = mathResult.SpeedMops;
             UpdateMiniBar("cpu", 33, "33%");
-            UpdateOverallProgress(11);
+            UpdateOverallProgress(8);
             UpdateCpuUI();
 
             await CheckPause();
@@ -268,14 +344,14 @@ namespace SysMarkWPF.Views
                     {
                         int p = 33 + (int)(cur / (double)tot * 33);
                         UpdateMiniBar("cpu", p, $"{p}%");
-                        UpdateOverallProgress(11 + (int)(cur / (double)tot * 11));
+                        UpdateOverallProgress(8 + (int)(cur / (double)tot * 8));
                         UpdateStatus($"CPU Mark: Sorting {cur}/{tot}...");
                     });
             });
             BenchmarkResults.CpuSortScore = sortResult.Score;
             BenchmarkResults.CpuSortTime = sortResult.TimeMs;
             UpdateMiniBar("cpu", 66, "66%");
-            UpdateOverallProgress(22);
+            UpdateOverallProgress(16);
             UpdateCpuUI();
 
             await CheckPause();
@@ -295,7 +371,7 @@ namespace SysMarkWPF.Views
                 aesResult.Score * 0.3);
             BenchmarkResults.CpuCompleted = true;
             UpdateMiniBar("cpu", 100, "✓");
-            UpdateOverallProgress(33, "CPU Mark completed!");
+            UpdateOverallProgress(25, "CPU Mark completed!");
             UpdateCpuUI();
         }
 
@@ -314,7 +390,7 @@ namespace SysMarkWPF.Views
             BenchmarkResults.MemoryReadScore = readResult.Score;
             BenchmarkResults.MemoryReadSpeed = readResult.SpeedMBps;
             UpdateMiniBar("mem", 33, "33%");
-            UpdateOverallProgress(44);
+            UpdateOverallProgress(33);
             UpdateMemoryUI();
 
             await CheckPause();
@@ -329,7 +405,7 @@ namespace SysMarkWPF.Views
             BenchmarkResults.MemoryWriteScore = writeResult.Score;
             BenchmarkResults.MemoryWriteSpeed = writeResult.SpeedMBps;
             UpdateMiniBar("mem", 66, "66%");
-            UpdateOverallProgress(55);
+            UpdateOverallProgress(41);
             UpdateMemoryUI();
 
             await CheckPause();
@@ -349,7 +425,7 @@ namespace SysMarkWPF.Views
                 latResult.Score * 0.2);
             BenchmarkResults.MemoryCompleted = true;
             UpdateMiniBar("mem", 100, "✓");
-            UpdateOverallProgress(66, "Memory Mark completed!");
+            UpdateOverallProgress(50, "Memory Mark completed!");
             UpdateMemoryUI();
         }
 
@@ -368,14 +444,14 @@ namespace SysMarkWPF.Views
                     {
                         int mp = (int)(p / 100.0 * 33);
                         UpdateMiniBar("disk", mp, $"{mp}%");
-                        UpdateOverallProgress(66 + (int)(mp / 100.0 * 11));
+                        UpdateOverallProgress(50 + (int)(mp / 100.0 * 8));
                         UpdateStatus(s);
                     });
             });
             BenchmarkResults.DiskSeqReadScore = seqReadResult.Score;
             BenchmarkResults.DiskSeqReadSpeed = seqReadResult.SpeedMBps;
             UpdateMiniBar("disk", 33, "33%");
-            UpdateOverallProgress(77);
+            UpdateOverallProgress(58);
             UpdateDiskUI();
 
             await CheckPause();
@@ -390,14 +466,14 @@ namespace SysMarkWPF.Views
                     {
                         int mp = 33 + (int)(p / 100.0 * 33);
                         UpdateMiniBar("disk", mp, $"{mp}%");
-                        UpdateOverallProgress(77 + (int)(p / 100.0 * 11));
+                        UpdateOverallProgress(58 + (int)(p / 100.0 * 8));
                         UpdateStatus(s);
                     });
             });
             BenchmarkResults.DiskSeqWriteScore = seqWriteResult.Score;
             BenchmarkResults.DiskSeqWriteSpeed = seqWriteResult.SpeedMBps;
             UpdateMiniBar("disk", 66, "66%");
-            UpdateOverallProgress(88);
+            UpdateOverallProgress(66);
             UpdateDiskUI();
 
             await CheckPause();
@@ -418,11 +494,66 @@ namespace SysMarkWPF.Views
                 randResult.Score * 0.2);
             BenchmarkResults.DiskCompleted = true;
             UpdateMiniBar("disk", 100, "✓");
-            UpdateOverallProgress(100, "Disk Mark completed!");
+            UpdateOverallProgress(75, "Disk Mark completed!");
             UpdateDiskUI();
         }
 
-        // ── Реализации тестов ──────────────────────────────────────
+        // ── Network тесты ──────────────────────────────────────────
+
+        private async Task RunNetworkTests()
+        {
+            UpdateStatus("Network Mark: Ping test...");
+            UpdateMiniBar("net", 5, "5%");
+            UpdateOverallProgress(75);
+
+            var pingResult = await Task.Run(async () =>
+            {
+                await CheckPause();
+                return RunNetPingTest(_cts!.Token);
+            });
+            BenchmarkResults.NetworkPingScore = pingResult.Score;
+            BenchmarkResults.NetworkAvgPing = pingResult.AvgMs;
+            UpdateMiniBar("net", 33, "33%");
+            UpdateOverallProgress(83);
+            UpdateNetworkUI();
+
+            await CheckPause();
+            if (_cts!.Token.IsCancellationRequested) return;
+
+            UpdateStatus("Network Mark: DNS Speed test...");
+            var dnsResult = await Task.Run(async () =>
+            {
+                await CheckPause();
+                return RunNetDnsTest(_cts!.Token);
+            });
+            BenchmarkResults.NetworkDnsScore = dnsResult.Score;
+            BenchmarkResults.NetworkAvgDns = dnsResult.AvgMs;
+            UpdateMiniBar("net", 66, "66%");
+            UpdateOverallProgress(91);
+            UpdateNetworkUI();
+
+            await CheckPause();
+            if (_cts!.Token.IsCancellationRequested) return;
+
+            UpdateStatus("Network Mark: Adapter test...");
+            var adapterResult = await Task.Run(async () =>
+            {
+                await CheckPause();
+                return RunNetAdapterTest(_cts!.Token);
+            });
+            BenchmarkResults.NetworkAdapterScore = adapterResult.Score;
+            BenchmarkResults.NetworkLinkSpeed = adapterResult.SpeedMbps;
+            BenchmarkResults.NetworkTotalScore = (int)(
+                pingResult.Score * 0.4 +
+                dnsResult.Score * 0.4 +
+                adapterResult.Score * 0.2);
+            BenchmarkResults.NetworkCompleted = true;
+            UpdateMiniBar("net", 100, "✓");
+            UpdateOverallProgress(100, "All tests completed!");
+            UpdateNetworkUI();
+        }
+
+        // ── Реализации CPU тестов ──────────────────────────────────
 
         private static MathResult RunMathTest(CancellationToken token)
         {
@@ -449,32 +580,27 @@ namespace SysMarkWPF.Views
         }
 
         private static SortResult RunSortTest(CancellationToken token,
-         Action<int, int>? onProgress = null)
+            Action<int, int>? onProgress = null)
         {
             int arraySize = 5_000_000;
             int iterations = 100;
             long totalMs = 0;
-
             for (int iter = 0; iter < iterations; iter++)
             {
                 if (token.IsCancellationRequested) break;
                 var rng = new Random(iter);
                 var arr = Enumerable.Range(0, arraySize)
-                                    .Select(_ => rng.Next())
-                                    .ToArray();
+                    .Select(_ => rng.Next()).ToArray();
                 var sw = System.Diagnostics.Stopwatch.StartNew();
                 Array.Sort(arr);
                 sw.Stop();
                 totalMs += sw.ElapsedMilliseconds;
                 onProgress?.Invoke(iter + 1, iterations);
             }
-
             double avgMs = totalMs / (double)iterations;
-            int score = (int)Math.Min(400.0 / Math.Max(avgMs, 1) * 5000, 9999);
-
             return new SortResult
             {
-                Score = score,
+                Score = (int)Math.Min(400.0 / Math.Max(avgMs, 1) * 5000, 9999),
                 TimeMs = totalMs
             };
         }
@@ -507,6 +633,8 @@ namespace SysMarkWPF.Views
                 SpeedMBps = speed
             };
         }
+
+        // ── Реализации Memory тестов ───────────────────────────────
 
         private static MemResult RunMemReadTest(CancellationToken token)
         {
@@ -572,6 +700,8 @@ namespace SysMarkWPF.Views
             };
         }
 
+        // ── Реализации Disk тестов ─────────────────────────────────
+
         private static DiskSeqResult RunDiskSeqRead(string filePath,
             CancellationToken token, Action<string, int>? onProgress = null)
         {
@@ -588,19 +718,20 @@ namespace SysMarkWPF.Views
                 {
                     if (token.IsCancellationRequested) break;
                     int p = (int)((i + 1) / (double)iterations * 50);
-                    onProgress?.Invoke($"Disk Read: Writing file {i + 1}/{iterations}...", p);
+                    onProgress?.Invoke($"Disk Read: Writing {i + 1}/{iterations}...", p);
                     using var fw = new FileStream(files[i], FileMode.Create,
                         FileAccess.Write, FileShare.None, buf.Length,
                         FileOptions.WriteThrough);
                     new Random().NextBytes(buf);
-                    for (int c = 0; c < fileSizeMb / bufMb; c++) fw.Write(buf, 0, buf.Length);
+                    for (int c = 0; c < fileSizeMb / bufMb; c++)
+                        fw.Write(buf, 0, buf.Length);
                     fw.Flush();
                 }
                 for (int i = 0; i < files.Length; i++)
                 {
                     if (token.IsCancellationRequested) break;
                     int p = 50 + (int)((i + 1) / (double)iterations * 50);
-                    onProgress?.Invoke($"Disk Read: Reading file {i + 1}/{iterations}...", p);
+                    onProgress?.Invoke($"Disk Read: Reading {i + 1}/{iterations}...", p);
                     var sw = System.Diagnostics.Stopwatch.StartNew();
                     using var fs = new FileStream(files[i], FileMode.Open,
                         FileAccess.Read, FileShare.None, buf.Length,
@@ -616,7 +747,7 @@ namespace SysMarkWPF.Views
                 foreach (var f in files) try { File.Delete(f); } catch { }
             }
             speeds.Sort();
-            double med = speeds[speeds.Count / 2];
+            double med = speeds.Count > 0 ? speeds[speeds.Count / 2] : 0;
             return new DiskSeqResult
             {
                 Score = (int)Math.Min(med / 5000.0 * 5000, 9999),
@@ -653,7 +784,7 @@ namespace SysMarkWPF.Views
                 speeds.Add(fileSizeMb / (sw.ElapsedMilliseconds / 1000.0));
             }
             speeds.Sort();
-            double med = speeds[speeds.Count / 2];
+            double med = speeds.Count > 0 ? speeds[speeds.Count / 2] : 0;
             return new DiskSeqResult
             {
                 Score = (int)Math.Min(med / 150.0 * 5000, 9999),
@@ -711,8 +842,8 @@ namespace SysMarkWPF.Views
                 wSpeeds.Add(mb / (swW.ElapsedMilliseconds / 1000.0));
             }
             rSpeeds.Sort(); wSpeeds.Sort();
-            double mr = rSpeeds[rSpeeds.Count / 2];
-            double mw = wSpeeds[wSpeeds.Count / 2];
+            double mr = rSpeeds.Count > 0 ? rSpeeds[rSpeeds.Count / 2] : 0;
+            double mw = wSpeeds.Count > 0 ? wSpeeds[wSpeeds.Count / 2] : 0;
             return new DiskRandResult
             {
                 Score = (int)Math.Min((mr + mw) / 2.0 / 85.0 * 5000, 9999),
@@ -721,19 +852,148 @@ namespace SysMarkWPF.Views
             };
         }
 
+        // ── Реализации Network тестов ──────────────────────────────
+
+        private static NetPingResult RunNetPingTest(CancellationToken token)
+        {
+            var hosts = new[] { "8.8.8.8", "1.1.1.1", "google.com" };
+            var times = new List<long>();
+            int sent = 0, lost = 0;
+            foreach (var host in hosts)
+            {
+                if (token.IsCancellationRequested) break;
+                for (int i = 0; i < 10; i++)
+                {
+                    if (token.IsCancellationRequested) break;
+                    sent++;
+                    try
+                    {
+                        using var ping = new Ping();
+                        var reply = ping.Send(host, 2000);
+                        if (reply.Status == IPStatus.Success)
+                            times.Add(reply.RoundtripTime);
+                        else lost++;
+                    }
+                    catch { lost++; }
+                }
+            }
+            if (times.Count == 0)
+                return new NetPingResult { Score = 0, AvgMs = 999 };
+            double avg = times.Average();
+            double loss = sent > 0 ? lost / (double)sent * 100 : 100;
+            int score = (int)Math.Min(
+                50.0 / Math.Max(avg, 1) * 5000 * (1 - loss / 200), 9999);
+            return new NetPingResult { Score = score, AvgMs = avg };
+        }
+
+        private static NetDnsResult RunNetDnsTest(CancellationToken token)
+        {
+            var random = new Random();
+            var tlds = new[] { "com", "net", "org", "io", "co" };
+            var times = new List<double>();
+            for (int i = 0; i < 20 && !token.IsCancellationRequested; i++)
+            {
+                string domain = $"{Guid.NewGuid():N}.{tlds[random.Next(tlds.Length)]}";
+                var sw = System.Diagnostics.Stopwatch.StartNew();
+                try { Dns.GetHostAddresses(domain); } catch { }
+                sw.Stop();
+                times.Add(Math.Min(sw.Elapsed.TotalMilliseconds, 2000));
+                Thread.Sleep(50);
+            }
+            double avg = times.Count > 0 ? times.Average() : 999;
+            int score = (int)Math.Min(100.0 / Math.Max(avg, 1) * 5000, 9999);
+            return new NetDnsResult { Score = score, AvgMs = avg };
+        }
+
+        private static NetAdapterResult RunNetAdapterTest(CancellationToken token)
+        {
+            var adapter = NetworkInterface.GetAllNetworkInterfaces()
+                .Where(n =>
+                    n.OperationalStatus == OperationalStatus.Up &&
+                    n.NetworkInterfaceType != NetworkInterfaceType.Loopback &&
+                    n.NetworkInterfaceType != NetworkInterfaceType.Tunnel &&
+                    !n.Description.Contains("Virtual",
+                        StringComparison.OrdinalIgnoreCase) &&
+                    !n.Name.Contains("vEthernet",
+                        StringComparison.OrdinalIgnoreCase) &&
+                    n.Speed > 0 && n.Speed < 100_000_000_000L)
+                .OrderByDescending(n => n.Speed)
+                .FirstOrDefault();
+
+            adapter ??= NetworkInterface.GetAllNetworkInterfaces()
+                .FirstOrDefault(n =>
+                    n.OperationalStatus == OperationalStatus.Up &&
+                    n.NetworkInterfaceType != NetworkInterfaceType.Loopback);
+
+            if (adapter == null)
+                return new NetAdapterResult { Score = 0, SpeedMbps = 0 };
+
+            long speedMbps = adapter.Speed / 1_000_000;
+            bool isVirtual =
+                adapter.Description.Contains("Virtual",
+                    StringComparison.OrdinalIgnoreCase) ||
+                adapter.Name.Contains("vEthernet",
+                    StringComparison.OrdinalIgnoreCase);
+
+            int score = isVirtual
+                ? (int)Math.Min(speedMbps / 1000.0 * 2500, 4999)
+                : (int)Math.Min(speedMbps / 1000.0 * 5000, 9999);
+
+            return new NetAdapterResult { Score = score, SpeedMbps = speedMbps };
+        }
+
         // ── Records ────────────────────────────────────────────────
 
-        private record MathResult { public int Score { get; init; } public double SpeedMops { get; init; } }
-        private record SortResult { public int Score { get; init; } public long TimeMs { get; init; } }
-        private record AesResult { public int Score { get; init; } public double SpeedMBps { get; init; } }
-        private record MemResult { public int Score { get; init; } public double SpeedMBps { get; init; } }
-        private record LatResult { public int Score { get; init; } public double LatencyNs { get; init; } }
-        private record DiskSeqResult { public int Score { get; init; } public double SpeedMBps { get; init; } }
+        private record MathResult
+        {
+            public int Score { get; init; }
+            public double SpeedMops { get; init; }
+        }
+        private record SortResult
+        {
+            public int Score { get; init; }
+            public long TimeMs { get; init; }
+        }
+        private record AesResult
+        {
+            public int Score { get; init; }
+            public double SpeedMBps { get; init; }
+        }
+        private record MemResult
+        {
+            public int Score { get; init; }
+            public double SpeedMBps { get; init; }
+        }
+        private record LatResult
+        {
+            public int Score { get; init; }
+            public double LatencyNs { get; init; }
+        }
+        private record DiskSeqResult
+        {
+            public int Score { get; init; }
+            public double SpeedMBps { get; init; }
+        }
         private record DiskRandResult
         {
             public int Score { get; init; }
             public double ReadSpeedMBps { get; init; }
             public double WriteSpeedMBps { get; init; }
+        }
+        private record NetPingResult
+        {
+            public int Score { get; init; }
+            public double AvgMs { get; init; }
+        }
+        private record NetDnsResult
+        {
+            public int Score { get; init; }
+            public double AvgMs { get; init; }
+        }
+        private record NetAdapterResult
+        {
+            public int Score { get; init; }
+            public long SpeedMbps { get; init; }
         }
     }
 }

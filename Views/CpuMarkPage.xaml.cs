@@ -19,7 +19,28 @@ namespace SysMarkWPF.Views
 
         private void CpuMarkPage_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadCpuInfo();
+            try { LoadCpuInfo(); } catch { }
+            try { LoadPreviousResults(); } catch { }
+        }
+
+        private void LoadPreviousResults()
+        {
+            if (!BenchmarkResults.CpuCompleted) return;
+
+            MathScore.Text = BenchmarkResults.CpuMathScore.ToString();
+            MathTime.Text = "— ms";
+            MathOps.Text = "—";
+            MathSpeed.Text = $"{BenchmarkResults.CpuMathSpeed:F1} Mop/s";
+            SortScore.Text = BenchmarkResults.CpuSortScore.ToString();
+            SortTime.Text = $"{BenchmarkResults.CpuSortTime} ms";
+            SortSize.Text = "500 000 000";
+            AesScore.Text = BenchmarkResults.CpuAesScore.ToString();
+            AesTime.Text = "— ms";
+            AesDataSize.Text = "1024 MB";
+            AesSpeed.Text = $"{BenchmarkResults.CpuAesSpeed:F1} MB/s";
+            TotalScore.Text = BenchmarkResults.CpuTotalScore.ToString();
+            UpdateProgress(100);
+            StatusText.Text = "Last test results loaded.";
         }
 
         private void LoadCpuInfo()
@@ -32,10 +53,22 @@ namespace SysMarkWPF.Views
                 if (cpu != null)
                 {
                     CpuNameText.Text = cpu.Name.Trim();
-                    CpuDetailsText.Text = $"{cpu.NumberOfCores} cores / {cpu.NumberOfLogicalProcessors} threads  |  {cpu.CurrentClockSpeed} MHz";
+                    CpuDetailsText.Text =
+                        $"{cpu.NumberOfCores} cores / {cpu.NumberOfLogicalProcessors} threads  |  {cpu.CurrentClockSpeed} MHz";
+                }
+                else
+                {
+                    CpuNameText.Text = SystemInfoCache.CpuName;
+                    CpuDetailsText.Text =
+                        $"{SystemInfoCache.CpuCores}  |  {SystemInfoCache.CpuSpeed}";
                 }
             }
-            catch { }
+            catch
+            {
+                CpuNameText.Text = SystemInfoCache.CpuName;
+                CpuDetailsText.Text =
+                    $"{SystemInfoCache.CpuCores}  |  {SystemInfoCache.CpuSpeed}";
+            }
         }
 
         private async void Start_Click(object sender, RoutedEventArgs e)
@@ -64,7 +97,7 @@ namespace SysMarkWPF.Views
 
                 if (_cts.Token.IsCancellationRequested) return;
 
-                // Тест 2 — Sorting с детальным прогрессом
+                // Тест 2 — Sorting
                 StatusText.Text = "Test 2/3: Sorting (100 iterations × 5M elements)...";
                 var sortResult = await Task.Run(() => RunSortTest(_cts.Token,
                     (current, total) =>
@@ -96,7 +129,6 @@ namespace SysMarkWPF.Views
                     AesSpeed.Text = $"{aesResult.SpeedMBps:F1} MB/s";
                 });
 
-                // Итоговый балл
                 int total = (int)(mathResult.Score * 0.4 +
                                   sortResult.Score * 0.3 +
                                   aesResult.Score * 0.3);
@@ -114,7 +146,6 @@ namespace SysMarkWPF.Views
                 BenchmarkResults.CpuSortTime = sortResult.TimeMs;
                 BenchmarkResults.CpuAesSpeed = aesResult.SpeedMBps;
                 BenchmarkResults.CpuCompleted = true;
-
             }
             catch (OperationCanceledException)
             {
@@ -134,10 +165,8 @@ namespace SysMarkWPF.Views
             StatusText.Text = "Test stopped.";
         }
 
-        private void Home_Click(object sender, RoutedEventArgs e)
-        {
+        private void Home_Click(object sender, RoutedEventArgs e) =>
             MainWindow.Instance?.NavigateTo(new MainPage());
-        }
 
         private void UpdateProgress(int value)
         {
@@ -162,7 +191,7 @@ namespace SysMarkWPF.Views
 
         // --- Тесты ---
 
-        private MathResult RunMathTest(CancellationToken token)
+        private static MathResult RunMathTest(CancellationToken token)
         {
             long operations = 0;
             double result = 0;
@@ -172,8 +201,10 @@ namespace SysMarkWPF.Views
             {
                 for (int i = 1; i < 10000; i++)
                 {
-                    result += Math.Sqrt(i) * Math.Sin(i) * Math.Cos(i) / (Math.Tan(i + 1) + 1);
-                    result += Math.Log(Math.Abs(result) + 1) * Math.Pow(i % 10 + 1, 1.5);
+                    result += Math.Sqrt(i) * Math.Sin(i) * Math.Cos(i) /
+                              (Math.Tan(i + 1) + 1);
+                    result += Math.Log(Math.Abs(result) + 1) *
+                              Math.Pow(i % 10 + 1, 1.5);
                     result += Math.Exp(result % 1) * Math.Atan(i);
                 }
                 operations += 10000;
@@ -192,7 +223,8 @@ namespace SysMarkWPF.Views
             };
         }
 
-        private SortResult RunSortTest(CancellationToken token, Action<int, int>? onProgress = null)
+        private static SortResult RunSortTest(CancellationToken token,
+            Action<int, int>? onProgress = null)
         {
             int arraySize = 5_000_000;
             int iterations = 100;
@@ -226,14 +258,13 @@ namespace SysMarkWPF.Views
             };
         }
 
-        private AesResult RunAesTest(CancellationToken token)
+        private static AesResult RunAesTest(CancellationToken token)
         {
             int blockSizeMb = 64;
             int totalBlocks = 16;
             int dataSizeMb = blockSizeMb * totalBlocks;
             var data = new byte[blockSizeMb * 1024 * 1024];
             new Random(42).NextBytes(data);
-
             long totalMs = 0;
 
             using var aes = Aes.Create();
@@ -246,7 +277,8 @@ namespace SysMarkWPF.Views
 
                 var sw = System.Diagnostics.Stopwatch.StartNew();
                 using var ms = new System.IO.MemoryStream();
-                using var cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write);
+                using var cs = new CryptoStream(ms, aes.CreateEncryptor(),
+                    CryptoStreamMode.Write);
                 cs.Write(data, 0, data.Length);
                 cs.FlushFinalBlock();
                 sw.Stop();

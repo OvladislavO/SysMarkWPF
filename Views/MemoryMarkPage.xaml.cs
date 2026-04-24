@@ -20,6 +20,27 @@ namespace SysMarkWPF.Views
         private void MemoryMarkPage_Loaded(object sender, RoutedEventArgs e)
         {
             LoadRamInfo();
+            LoadPreviousResults();
+        }
+
+        private void LoadPreviousResults()
+        {
+            if (!BenchmarkResults.MemoryCompleted) return;
+            ReadScore.Text = BenchmarkResults.MemoryReadScore.ToString();
+            ReadSpeed.Text = $"{BenchmarkResults.MemoryReadSpeed:F1} MB/s";
+            ReadBlock.Text = "512 MB";
+            ReadTime.Text = "— ms";
+            WriteScore.Text = BenchmarkResults.MemoryWriteScore.ToString();
+            WriteSpeed.Text = $"{BenchmarkResults.MemoryWriteSpeed:F1} MB/s";
+            WriteBlock.Text = "512 MB";
+            WriteTime.Text = "— ms";
+            LatencyScore.Text = BenchmarkResults.MemoryLatencyScore.ToString();
+            LatencyNs.Text = $"{BenchmarkResults.MemoryLatencyNs:F2} ns";
+            LatencyAccesses.Text = "10 000 000";
+            LatencyTime.Text = "— ms";
+            TotalScore.Text = BenchmarkResults.MemoryTotalScore.ToString();
+            UpdateProgress(100);
+            StatusText.Text = "Last test results loaded.";
         }
 
         private void LoadRamInfo()
@@ -157,7 +178,7 @@ namespace SysMarkWPF.Views
 
         // --- Тесты ---
 
-        private ReadResult RunReadTest(CancellationToken token)
+        private static ReadResult RunReadTest(CancellationToken token)
         {
             int blockSizeMb = 512;
             int iterations = 10;
@@ -191,7 +212,7 @@ namespace SysMarkWPF.Views
             };
         }
 
-        private WriteResult RunWriteTest(CancellationToken token)
+        private static WriteResult RunWriteTest(CancellationToken token)
         {
             int blockSizeMb = 512;
             int iterations = 10;
@@ -221,7 +242,7 @@ namespace SysMarkWPF.Views
             };
         }
 
-        private LatencyResult RunLatencyTest(CancellationToken token)
+        private static LatencyResult RunLatencyTest(CancellationToken token)
         {
             int size = 64 * 1024 * 1024;
             int accesses = 10_000_000;

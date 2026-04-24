@@ -40,10 +40,15 @@
         public static long NetworkLinkSpeed { get; set; }
         public static bool NetworkCompleted { get; set; }
 
+        // Passmark
+        public static int TotalPassMarkScore { get; set; }
+        public static bool AllTestsCompleted => CpuCompleted && MemoryCompleted && DiskCompleted && NetworkCompleted;
+
         // Flags
         public static bool CpuCompleted { get; set; }
         public static bool MemoryCompleted { get; set; }
         public static bool DiskCompleted { get; set; }
+
 
         public static void Reset()
         {
@@ -60,7 +65,8 @@
             NetworkTotalScore = 0; NetworkPingScore = 0;
             NetworkDnsScore = 0; NetworkAdapterScore = 0;
             NetworkAvgPing = 0; NetworkAvgDns = 0;
-            NetworkLinkSpeed = 0; 
+            NetworkLinkSpeed = 0;
+            TotalPassMarkScore = 0;
             NetworkCompleted = false;
             CpuCompleted = false;
             MemoryCompleted = false;

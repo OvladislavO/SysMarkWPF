@@ -3,68 +3,76 @@
   "WorkspaceRootPath": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\networkmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\networkmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\networkmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\networkmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\passmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\passmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\passmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\passmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\services\\exportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:services\\exportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\models\\benchmarkresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:models\\benchmarkresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\resources\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:resources\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\cpumarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\cpumarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\diskmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\diskmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\memorymarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\memorymarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\diskmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\diskmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\memorymarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\memorymarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\cpumarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\cpumarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\models\\systeminfocache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:models\\systeminfocache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\models\\benchmarkresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:models\\benchmarkresults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\passmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\passmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\sysmarkwpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:sysmarkwpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\passmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\passmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\networkmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\networkmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\memorymarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\memorymarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\diskmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\diskmarkpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\memorymarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\memorymarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\networkmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\networkmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\services\\exportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:services\\exportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\resources\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:resources\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\views\\diskmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:views\\diskmarkpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -79,10 +87,6 @@
       "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\sysmarkwpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:sysmarkwpf.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|c:\\users\\inna\\source\\repos\\sysmarkwpf\\resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{50DDFCD2-A729-47E3-8203-9A82ED6DF3B6}|SysMarkWPF.csproj|solutionrelative:resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
@@ -94,60 +98,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "ExportService.cs",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Services\\ExportService.cs",
-              "RelativeDocumentMoniker": "Services\\ExportService.cs",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Services\\ExportService.cs",
-              "RelativeToolTip": "Services\\ExportService.cs",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAmwK0AAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T19:46:06.81Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NetworkMarkPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\NetworkMarkPage.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\NetworkMarkPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\NetworkMarkPage.xaml.cs",
-              "RelativeToolTip": "Views\\NetworkMarkPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T19:45:25.665Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NetworkMarkPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\NetworkMarkPage.xaml",
-              "RelativeDocumentMoniker": "Views\\NetworkMarkPage.xaml",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\NetworkMarkPage.xaml",
-              "RelativeToolTip": "Views\\NetworkMarkPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-21T19:45:01.246Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "SystemInfoCache.cs",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Models\\SystemInfoCache.cs",
+              "RelativeDocumentMoniker": "Models\\SystemInfoCache.cs",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Models\\SystemInfoCache.cs",
+              "RelativeToolTip": "Models\\SystemInfoCache.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T09:08:53.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "PassMarkPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\PassMarkPage.xaml.cs",
               "RelativeDocumentMoniker": "Views\\PassMarkPage.xaml.cs",
               "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\PassMarkPage.xaml.cs",
               "RelativeToolTip": "Views\\PassMarkPage.xaml.cs",
-              "ViewState": "AgIAALcAAAAAAAAAAAAiwM0AAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAcwHsAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T19:19:33.247Z"
+              "WhenOpened": "2026-04-20T19:19:33.247Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "PassMarkPage.xaml",
               "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\PassMarkPage.xaml",
               "RelativeDocumentMoniker": "Views\\PassMarkPage.xaml",
@@ -159,7 +140,135 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SysMarkWPF.csproj",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\SysMarkWPF.csproj",
+              "RelativeDocumentMoniker": "SysMarkWPF.csproj",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\SysMarkWPF.csproj",
+              "RelativeToolTip": "SysMarkWPF.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-18T18:57:30.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MainPage.xaml.cs",
+              "RelativeToolTip": "Views\\MainPage.xaml.cs",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAUwMMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T19:23:02.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CpuMarkPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\CpuMarkPage.xaml",
+              "RelativeDocumentMoniker": "Views\\CpuMarkPage.xaml",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\CpuMarkPage.xaml",
+              "RelativeToolTip": "Views\\CpuMarkPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-18T19:26:53.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CpuMarkPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\CpuMarkPage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\CpuMarkPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\CpuMarkPage.xaml.cs",
+              "RelativeToolTip": "Views\\CpuMarkPage.xaml.cs",
+              "ViewState": "AgIAAD4BAAAAAAAAAAAgwEQBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T13:06:31.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "NetworkMarkPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\NetworkMarkPage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\NetworkMarkPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\NetworkMarkPage.xaml.cs",
+              "RelativeToolTip": "Views\\NetworkMarkPage.xaml.cs",
+              "ViewState": "AgIAACoBAAAAAAAAAAAiwEIBAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T19:45:25.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MemoryMarkPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MemoryMarkPage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\MemoryMarkPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MemoryMarkPage.xaml.cs",
+              "RelativeToolTip": "Views\\MemoryMarkPage.xaml.cs",
+              "ViewState": "AgIAANwAAAAAAAAAAAAiwPgAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T14:00:31.364Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "BenchmarkResults.cs",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Models\\BenchmarkResults.cs",
+              "RelativeDocumentMoniker": "Models\\BenchmarkResults.cs",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Models\\BenchmarkResults.cs",
+              "RelativeToolTip": "Models\\BenchmarkResults.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAUwEQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-20T19:12:28.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DiskMarkPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\DiskMarkPage.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\DiskMarkPage.xaml.cs",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\DiskMarkPage.xaml.cs",
+              "RelativeToolTip": "Views\\DiskMarkPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-19T18:56:26.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MemoryMarkPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MemoryMarkPage.xaml",
+              "RelativeDocumentMoniker": "Views\\MemoryMarkPage.xaml",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MemoryMarkPage.xaml",
+              "RelativeToolTip": "Views\\MemoryMarkPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-18T19:27:14.084Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T18:19:05.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "MainPage.xaml",
               "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MainPage.xaml",
               "RelativeDocumentMoniker": "Views\\MainPage.xaml",
@@ -170,31 +279,30 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MainPage.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\MainPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MainPage.xaml.cs",
-              "RelativeToolTip": "Views\\MainPage.xaml.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAowCcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T19:23:02.151Z"
+              "DocumentIndex": 13,
+              "Title": "NetworkMarkPage.xaml",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\NetworkMarkPage.xaml",
+              "RelativeDocumentMoniker": "Views\\NetworkMarkPage.xaml",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\NetworkMarkPage.xaml",
+              "RelativeToolTip": "Views\\NetworkMarkPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-21T19:45:01.246Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CpuMarkPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\CpuMarkPage.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\CpuMarkPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\CpuMarkPage.xaml.cs",
-              "RelativeToolTip": "Views\\CpuMarkPage.xaml.cs",
-              "ViewState": "AgIAAL0AAAAAAAAAAAAIwOIAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 15,
+              "Title": "ExportService.cs",
+              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Services\\ExportService.cs",
+              "RelativeDocumentMoniker": "Services\\ExportService.cs",
+              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Services\\ExportService.cs",
+              "RelativeToolTip": "Services\\ExportService.cs",
+              "ViewState": "AgIAAKYAAAAAAAAAAAAmwK0AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T13:06:31.558Z"
+              "WhenOpened": "2026-04-21T19:46:06.81Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 16,
               "Title": "Colors.xaml",
               "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Resources\\Colors.xaml",
               "RelativeDocumentMoniker": "Resources\\Colors.xaml",
@@ -206,31 +314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BenchmarkResults.cs",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Models\\BenchmarkResults.cs",
-              "RelativeDocumentMoniker": "Models\\BenchmarkResults.cs",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Models\\BenchmarkResults.cs",
-              "RelativeToolTip": "Models\\BenchmarkResults.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowD8AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-20T19:12:28.444Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "MemoryMarkPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MemoryMarkPage.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\MemoryMarkPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MemoryMarkPage.xaml.cs",
-              "RelativeToolTip": "Views\\MemoryMarkPage.xaml.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAkwG8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T14:00:31.364Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -241,31 +325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "DiskMarkPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\DiskMarkPage.xaml.cs",
-              "RelativeDocumentMoniker": "Views\\DiskMarkPage.xaml.cs",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\DiskMarkPage.xaml.cs",
-              "RelativeToolTip": "Views\\DiskMarkPage.xaml.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAkwIYAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-19T18:56:26.107Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T18:19:05.805Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "DiskMarkPage.xaml",
               "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\DiskMarkPage.xaml",
               "RelativeDocumentMoniker": "Views\\DiskMarkPage.xaml",
@@ -276,29 +336,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "CpuMarkPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\CpuMarkPage.xaml",
-              "RelativeDocumentMoniker": "Views\\CpuMarkPage.xaml",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\CpuMarkPage.xaml",
-              "RelativeToolTip": "Views\\CpuMarkPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-18T19:26:53.377Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "MemoryMarkPage.xaml",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MemoryMarkPage.xaml",
-              "RelativeDocumentMoniker": "Views\\MemoryMarkPage.xaml",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Views\\MemoryMarkPage.xaml",
-              "RelativeToolTip": "Views\\MemoryMarkPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-18T19:27:14.084Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Styles.xaml",
               "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\Resources\\Styles.xaml",
               "RelativeDocumentMoniker": "Resources\\Styles.xaml",
@@ -310,7 +348,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "AssemblyInfo.cs",
@@ -323,18 +361,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 19,
-              "Title": "SysMarkWPF.csproj",
-              "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\SysMarkWPF.csproj",
-              "RelativeDocumentMoniker": "SysMarkWPF.csproj",
-              "ToolTip": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\SysMarkWPF.csproj",
-              "RelativeToolTip": "SysMarkWPF.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-18T18:57:30.621Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\Inna\\source\\repos\\SysMarkWPF\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",

@@ -22,6 +22,27 @@ namespace SysMarkWPF.Views
         private void DiskMarkPage_Loaded(object sender, RoutedEventArgs e)
         {
             LoadDiskInfo();
+            LoadPreviousResults();
+        }
+
+        private void LoadPreviousResults()
+        {
+            if (!BenchmarkResults.DiskCompleted) return;
+            SeqReadScore.Text = BenchmarkResults.DiskSeqReadScore.ToString();
+            SeqReadSpeed.Text = $"{BenchmarkResults.DiskSeqReadSpeed:F1} MB/s";
+            SeqReadFile.Text = "1024 MB";
+            SeqReadTime.Text = "— ms";
+            SeqWriteScore.Text = BenchmarkResults.DiskSeqWriteScore.ToString();
+            SeqWriteSpeed.Text = $"{BenchmarkResults.DiskSeqWriteSpeed:F1} MB/s";
+            SeqWriteFile.Text = "512 MB";
+            SeqWriteTime.Text = "— ms";
+            RandScore.Text = BenchmarkResults.DiskRandScore.ToString();
+            RandReadSpeed.Text = $"{BenchmarkResults.DiskRandReadSpeed:F1} MB/s";
+            RandWriteSpeed.Text = $"{BenchmarkResults.DiskRandWriteSpeed:F1} MB/s";
+            RandTime.Text = "— ms";
+            TotalScore.Text = BenchmarkResults.DiskTotalScore.ToString();
+            UpdateProgress(100);
+            StatusText.Text = "Last test results loaded.";
         }
 
         private void LoadDiskInfo()
