@@ -168,6 +168,14 @@ namespace SysMarkWPF.Views
         private void Home_Click(object sender, RoutedEventArgs e) =>
             MainWindow.Instance?.NavigateTo(new MainPage());
 
+        private void SaveTxt_Click(object sender, RoutedEventArgs e) =>
+    SysMarkWPF.Services.ExportService.SaveTxt();
+
+        private void SavePng_Click(object sender, RoutedEventArgs e) =>
+            SysMarkWPF.Services.ExportService.SavePng(this);
+
+        private void SaveDocx_Click(object sender, RoutedEventArgs e) =>
+            SysMarkWPF.Services.ExportService.SaveDocx();
         private void UpdateProgress(int value)
         {
             Dispatcher.Invoke(() =>
